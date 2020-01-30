@@ -137,6 +137,7 @@ function partition(array, start, end) {
     }
   }
   swap(array, end - 1, j);
+  console.log(array);
   return j;
 };
 
@@ -150,7 +151,7 @@ function quickSort(array, start = 0, end = array.length) {
   array = quickSort(array, middle + 1, end);
   return array;
 };
-// console.log(quickSort(listOfNums));
+console.log(quickSort(listOfNums));
 
 
 //2. The Pivot could have either been 14 or 17 because the partition function
@@ -159,7 +160,14 @@ function quickSort(array, start = 0, end = array.length) {
 //A) When using the last item on the list as a pivot
 //[3,  9, 10, 12, 19, 14, 17, 16, 13, 15]
 //B) When using the first item on the list as a pivot
-//[9, 10, 3, 12, 13, 14, 15, 16, 19, 17]
+
+// [14, 17, 13, 15, 19, 10, 3, 16, 9, 12]  ORIGINAL ARRAY
+
+// [12, 13, 10, 3, 9, 14, 15, 16, 19, 17]  FIRST PARTITIONING
+//                    p
+// [[12, 13, 10, 3, 9], 14,[ 15, 16, 19, 17]]
+
+// [9, 10, 3, 12, 13], 14, [ 15, 16, 19, 17] SECOND PARTITIONING
 
 // 3. Implementing quicksort
 
