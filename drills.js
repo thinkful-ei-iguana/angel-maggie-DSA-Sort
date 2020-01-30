@@ -1,4 +1,6 @@
-function mergeSort(array) {
+const linkedList = require('./linkedList');
+
+function mSort(array) {
   if (array.length <= 1) {
     return array;
   }
@@ -7,8 +9,8 @@ function mergeSort(array) {
   let left = array.slice(0, middle);
   let right = array.slice(middle, array.length);
 
-  left = mergeSort(left);
-  right = mergeSort(right);
+  left = mSort(left);
+  right = mSort(right);
   return merge(left, right, array);
 };
 
@@ -32,9 +34,12 @@ function merge(left, right, array) {
   for (let i = rightIndex; i < right.length; i++) {
     array[outputIndex++] = right[i];
   }
-  console.log('array being merged is', array);
+  // console.log('array being merged is', array);
   return array;
 };
+let dataSet = [89, 30, 25, 32, 72, 70, 51, 42, 25, 24, 53, 55, 78, 50, 13, 40, 48, 32, 26, 2, 14, 33, 45, 72, 56, 44, 21, 88, 27, 68, 15, 62, 93, 98, 73, 28, 16, 46, 87, 28, 65, 38, 67, 16, 85, 63, 23, 69, 64, 91, 9, 70, 81, 27, 97, 82, 6, 88, 3, 7, 46, 13, 11, 64, 76, 31, 26, 38, 28, 13, 17, 69, 90, 1, 6, 7, 64, 43, 9, 73, 80, 98, 46, 27, 22, 87, 49, 83, 6, 39, 42, 51, 54, 84, 34, 53, 78, 40, 14, 5];
+
+console.log(mSort(dataSet))
 
 /////////////////////////
 
@@ -137,7 +142,7 @@ function partition(array, start, end) {
     }
   }
   swap(array, end - 1, j);
-  console.log(array);
+  // console.log(array);
   return j;
 };
 
@@ -151,7 +156,7 @@ function quickSort(array, start = 0, end = array.length) {
   array = quickSort(array, middle + 1, end);
   return array;
 };
-console.log(quickSort(listOfNums));
+// console.log(quickSort(listOfNums));
 
 
 //2. The Pivot could have either been 14 or 17 because the partition function
@@ -176,14 +181,33 @@ function qSort(array, start = 0, end = array.length) {
     return array;
   }
   const middle = partition(array, start, end);
-  array = quickSort(array, start, middle);
-  array = quickSort(array, middle + 1, end);
+  array = qSort(array, start, middle);
+  array = qSort(array, middle + 1, end);
   return array;
 }
 
 
-let dataSet = [89, 30, 25, 32, 72, 70, 51, 42, 25, 24, 53, 55, 78, 50, 13, 40, 48, 32, 26, 2, 14, 33, 45, 72, 56, 44, 21, 88, 27, 68, 15, 62, 93, 98, 73, 28, 16, 46, 87, 28, 65, 38, 67, 16, 85, 63, 23, 69, 64, 91, 9, 70, 81, 27, 97, 82, 6, 88, 3, 7, 46, 13, 11, 64, 76, 31, 26, 38, 28, 13, 17, 69, 90, 1, 6, 7, 64, 43, 9, 73, 80, 98, 46, 27, 22, 87, 49, 83, 6, 39, 42, 51, 54, 84, 34, 53, 78, 40, 14, 5];
+// let dataSet = [89, 30, 25, 32, 72, 70, 51, 42, 25, 24, 53, 55, 78, 50, 13, 40, 48, 32, 26, 2, 14, 33, 45, 72, 56, 44, 21, 88, 27, 68, 15, 62, 93, 98, 73, 28, 16, 46, 87, 28, 65, 38, 67, 16, 85, 63, 23, 69, 64, 91, 9, 70, 81, 27, 97, 82, 6, 88, 3, 7, 46, 13, 11, 64, 76, 31, 26, 38, 28, 13, 17, 69, 90, 1, 6, 7, 64, 43, 9, 73, 80, 98, 46, 27, 22, 87, 49, 83, 6, 39, 42, 51, 54, 84, 34, 53, 78, 40, 14, 5];
 
 // console.log(qSort(dataSet));
 
 // 4. Implementing merge sort
+
+const list = new linkedList();
+
+list.insertLast('goldenSkull')
+list.insertLast('elephantBambu')
+list.insertLast('oldStarbucksCoffee')
+list.insertLast('halfDoneScratchOff')
+
+console.log(list.mSort())
+
+
+
+
+
+
+
+
+
+
