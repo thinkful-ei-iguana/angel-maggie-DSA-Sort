@@ -157,6 +157,6 @@ console.log(quickSort(listOfNums))
 //2. The Pivot could have either been 14 or 17 because the partition function
 //    puts all the values greater than the pivot value to its right
 //A) When using the last item on the list as a pivot
-        //[3,  9, 10, 12, 19, 14, 17, 16, 13, 15]
+        //[3, 9, 10,] , [12, 19, 14, 17, 16, 13, 15]
 //B) When using the first item on the list as a pivot
       //[  ]
