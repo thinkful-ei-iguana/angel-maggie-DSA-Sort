@@ -48,28 +48,7 @@ class LinkedList {
     // Found it
     return currNode;
   }
-  listLength(list){
-    let counter = 0;
-    while(list.next){
-      counter++;
-      listLength(list.next)
-    }
-    return counter;
-  }
-  mergeSort(list) {
-    let listLength = listLength(list);
-    if (list === null ) {
-        return list;
-    }
 
-    const middle = Math.floor(listLength(list) / 2);
-    let left = left;
-    let right = array.slice(middle, array.length);
-
-    left = mergeSort(left);
-    right = mergeSort(right);
-    return merge(left, right, array);
-};
   remove(item) {
     // If the list is empty
     if (!this.head) {

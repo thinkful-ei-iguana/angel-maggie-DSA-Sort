@@ -1,6 +1,6 @@
 const linkedList = require('./linkedList');
 
-function mSort(array) {
+function mergeSort(array) {
   if (array.length <= 1) {
     return array;
   }
@@ -9,8 +9,8 @@ function mSort(array) {
   let left = array.slice(0, middle);
   let right = array.slice(middle, array.length);
 
-  left = mSort(left);
-  right = mSort(right);
+  left = mergeSort(left);
+  right = mergeSort(right);
   return merge(left, right, array);
 };
 
@@ -34,12 +34,8 @@ function merge(left, right, array) {
   for (let i = rightIndex; i < right.length; i++) {
     array[outputIndex++] = right[i];
   }
-  // console.log('array being merged is', array);
   return array;
 };
-let dataSet = [89, 30, 25, 32, 72, 70, 51, 42, 25, 24, 53, 55, 78, 50, 13, 40, 48, 32, 26, 2, 14, 33, 45, 72, 56, 44, 21, 88, 27, 68, 15, 62, 93, 98, 73, 28, 16, 46, 87, 28, 65, 38, 67, 16, 85, 63, 23, 69, 64, 91, 9, 70, 81, 27, 97, 82, 6, 88, 3, 7, 46, 13, 11, 64, 76, 31, 26, 38, 28, 13, 17, 69, 90, 1, 6, 7, 64, 43, 9, 73, 80, 98, 46, 27, 22, 87, 49, 83, 6, 39, 42, 51, 54, 84, 34, 53, 78, 40, 14, 5];
-
-console.log(mSort(dataSet))
 
 /////////////////////////
 
@@ -56,7 +52,7 @@ function sortDrill(array) {
   left = sortDrill(left);
   right = sortDrill(right);
   return merge(left, right, array);
-};
+}
 
 // let listOfNums = [21, 1, 26, 45, 29, 28, 2, 9, 16, 49, 39, 27, 43, 34, 46, 40]
 
@@ -108,26 +104,26 @@ function sortDrill(array) {
 
 // 2. Understanding quicksort
 
-function bubbleSort(array) {
-  let swaps = 0;
-  for (let i = 0; i < array.length - 1; i++) {
-    if (array[i] > array[i + 1]) {
-      swap(array, i, i + 1);
-      swaps++;
-    }
-  }
+// function bubbleSort(array) {
+//   let swaps = 0;
+//   for (let i = 0; i < array.length - 1; i++) {
+//     if (array[i] > array[i + 1]) {
+//       swap(array, i, i + 1);
+//       swaps++;
+//     }
+//   }
 
-  if (swaps > 0) {
-    return bubbleSort(array);
-  }
-  return array;
-};
+//   if (swaps > 0) {
+//     return bubbleSort(array);
+//   }
+//   return array;
+// }
 
 function swap(array, i, j) {
   const tmp = array[i];
   array[i] = array[j];
   array[j] = tmp;
-};
+}
 
 
 let listOfNums = [14, 17, 13, 15, 19, 10, 3, 16, 9, 12];
@@ -144,7 +140,7 @@ function partition(array, start, end) {
   swap(array, end - 1, j);
   // console.log(array);
   return j;
-};
+}
 
 
 function quickSort(array, start = 0, end = array.length) {
@@ -155,7 +151,7 @@ function quickSort(array, start = 0, end = array.length) {
   array = quickSort(array, start, middle);
   array = quickSort(array, middle + 1, end);
   return array;
-};
+}
 // console.log(quickSort(listOfNums));
 
 
@@ -191,16 +187,100 @@ function qSort(array, start = 0, end = array.length) {
 
 // console.log(qSort(dataSet));
 
+//////////////////////////////
+
 // 4. Implementing merge sort
 
-const list = new linkedList();
+function mSort(array) {
+  if (array.length <= 1) {
+    return array;
+  }
 
-list.insertLast('goldenSkull')
-list.insertLast('elephantBambu')
-list.insertLast('oldStarbucksCoffee')
-list.insertLast('halfDoneScratchOff')
+  const middle = Math.floor(array.length / 2);
+  let left = array.slice(0, middle);
+  let right = array.slice(middle, array.length);
 
-console.log(list.mSort())
+  left = mSort(left);
+  right = mSort(right);
+  return merge(left, right, array);
+}
+
+function merge(left, right, array) {
+  let leftIndex = 0;
+  let rightIndex = 0;
+  let outputIndex = 0;
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      array[outputIndex++] = left[leftIndex++];
+    }
+    else {
+      array[outputIndex++] = right[rightIndex++];
+    }
+  }
+
+  for (let i = leftIndex; i < left.length; i++) {
+    array[outputIndex++] = left[i];
+  }
+
+  for (let i = rightIndex; i < right.length; i++) {
+    array[outputIndex++] = right[i];
+  }
+  // console.log('array being merged is', array);
+  return array;
+}
+let dataSet = [89, 30, 25, 32, 72, 70, 51, 42, 25, 24, 53, 55, 78, 50, 13, 40, 48, 32, 26, 2, 14, 33, 45, 72, 56, 44, 21, 88, 27, 68, 15, 62, 93, 98, 73, 28, 16, 46, 87, 28, 65, 38, 67, 16, 85, 63, 23, 69, 64, 91, 9, 70, 81, 27, 97, 82, 6, 88, 3, 7, 46, 13, 11, 64, 76, 31, 26, 38, 28, 13, 17, 69, 90, 1, 6, 7, 64, 43, 9, 73, 80, 98, 46, 27, 22, 87, 49, 83, 6, 39, 42, 51, 54, 84, 34, 53, 78, 40, 14, 5];
+
+// console.log(mSort(dataSet));
+
+
+
+// 5. Linked list merge sort
+
+function display(list) {
+  let tempNode = list.head;
+  let result = [];
+  while (tempNode !== null) {
+    result.push(tempNode.value);
+    tempNode = tempNode.next;
+  }
+  return result;
+};
+
+function createLinkedList() {
+  const list = new linkedList();
+
+  list.insertLast('goldenSkull');
+  list.insertLast('elephantBambu');
+  list.insertLast('oldStarbucksCoffee');
+  list.insertLast('halfDoneScratchOff');
+  // console.log(display(list));
+  return display(list);
+}
+
+console.log(mergeSort(createLinkedList()));
+
+// 6. Bucket sort
+
+let intArr = [3, 5, 3, 7, 8, 11]
+function bucketSort(arr) {
+  return arr.sort((a, b) => a - b)
+}
+// console.log(bucketSort(intArr));
+
+// 7. Sort in place
+
+function randomSortInPlace(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let j = Math.floor(Math.random() * arr.length);
+    swap(arr, i, j)
+  }
+  return arr;
+}
+// console.log(randomSortInPlace(intArr));
+
+// 8. Sort books
+let books = ['The Golden Compass', 'Harry Potter', 'The Amber Spyglass', 'The Subtle Knife', 'If You Give A Mouse A Cookie', 'Defy The Sun', 'Becoming'];
+// console.log(mergeSort(books));
 
 
 
